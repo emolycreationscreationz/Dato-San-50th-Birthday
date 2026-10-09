@@ -42,9 +42,10 @@ window.EVENT = {
     { src: "assets/photos/dato-san-5.webp", focus: "46% 42%", alt: "Dato’ San framed through a carved marble window" }
   ],
 
-  // --- Further details (PLACEHOLDER — replace with real name & number) ---
+  // --- Further details ---
   contacts: [
-    { name: "[Contact Name]", phone: "+60 12-345 6789" }
+    { name: "Vaisnave", phone: "012-347 1548" },
+    { name: "Suren", phone: "010-882 1521" }
   ],
 
   // --- RSVP (Google Sheets) ---
