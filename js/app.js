@@ -113,6 +113,27 @@
     }
   }
 
+  /* ---------- Background music ---------- */
+  var music = null;
+  function musicSetup() {
+    if (!C.music) return;
+    music = new Audio(C.music);
+    music.loop = true;
+    music.preload = 'auto';
+    // Pause while the invitation is in the background, carry on when the guest returns
+    var wasPlaying = false;
+    document.addEventListener('visibilitychange', function () {
+      if (document.hidden) { wasPlaying = !music.paused; music.pause(); }
+      else if (wasPlaying) music.play().catch(function () {});
+    });
+  }
+  // Called inside the tap on the seal, so browsers allow sound
+  function startMusic() {
+    if (!music) return;
+    try { music.currentTime = 0; } catch (e) {}
+    music.play().catch(function () {});
+  }
+
   // Start from the beginning as the envelope opens (the video is silent)
   function startVideo() {
     if (!video) return;
@@ -130,6 +151,7 @@
       if (opened) return;
       opened = true;
       window.scrollTo(0, 0);
+      startMusic();
       startVideo();
       var r = seal.getBoundingClientRect(), cx = r.left + r.width / 2, cy = r.top + r.height / 2;
       intro.classList.add('press');                                   // seal trembles
@@ -469,6 +491,7 @@
   atmosphere();
   extras();
   heroMedia();
+  musicSetup();
   gallery();
   envelope();
   reveals();

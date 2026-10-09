@@ -52,6 +52,12 @@ To replace it:
 
 The video plays silently (its audio track was removed).
 
+## Background music
+
+`assets/music/jailer-2-theme.mp3` (set as `music` in `js/config.js`). It starts from the beginning when the seal
+is tapped, loops, and pauses while the browser tab is in the background. There are no music buttons.
+To change the song, replace the file (or the path in `music`); set `music: ""` to turn it off.
+
 ## The 5 photos
 
 Current photos: `assets/photos/dato-san-1.webp` … `dato-san-5.webp`.

@@ -31,6 +31,9 @@ window.EVENT = {
   heroPoster: "assets/video/dato-san-poster.jpg",   // still shown while the video loads
   heroVideoRatio: "16 / 9",      // "16 / 9" landscape, "9 / 16" portrait, "1 / 1" square
 
+  // --- Background music (starts from the beginning when the seal is tapped, loops) ---
+  music: "assets/music/jailer-2-theme.mp3",   // empty = no music
+
   // --- Gallery (5 photos) ---
   // Put photos in assets/photos/ and fill in src. Empty src = placeholder frame.
   // focus = which part of the photo stays visible when cropped ("x% y%").
