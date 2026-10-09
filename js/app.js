@@ -142,13 +142,13 @@
       var r = seal.getBoundingClientRect(), cx = r.left + r.width / 2, cy = r.top + r.height / 2;
       intro.classList.add('press');                                   // seal trembles
       at(260, function () {
-        intro.classList.add('opening');                               // seal cracks in two
+        intro.classList.add('opening');                               // seal cracks, ribbon slides away
         FX.burst(cx, cy);
       });
-      at(560, function () { intro.classList.add('flap'); });          // flap swings open
-      at(1060, function () { intro.classList.add('flap-back', 'card'); }); // card rises
-      at(2350, function () { intro.classList.add('zoom'); });         // card comes forward, golden flash
-      at(2700, function () {
+      at(950, function () { intro.classList.add('flap'); });          // flap swings open
+      at(1500, function () { intro.classList.add('flap-back', 'card'); }); // card rises
+      at(2800, function () { intro.classList.add('zoom'); });         // card comes forward, golden flash
+      at(3150, function () {
         intro.classList.add('out');                                   // page appears under the flash
         document.body.classList.remove('locked');
         document.body.classList.add('opened');
@@ -157,7 +157,7 @@
         FX.confettiRain();
         celebrate();
       });
-      at(4300, function () { intro.remove(); });
+      at(4700, function () { intro.remove(); });
     }
     seal.addEventListener('click', function () { seal.blur(); open(); });
     $('#env').addEventListener('click', function (e) { if (!seal.contains(e.target)) open(); });

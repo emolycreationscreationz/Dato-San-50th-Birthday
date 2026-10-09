@@ -18,8 +18,8 @@
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Great+Vibes&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=2">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800&family=Cinzel+Decorative:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Great+Vibes&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css?v=3">
 </head>
 <body class="locked">
 
@@ -93,20 +93,47 @@
       <path d="M-4 20l4 4 4-4-4-4z" fill="#5a3f0c" fill-opacity=".7"/>
       <ellipse cx="-15" cy="-22" rx="12" ry="5" fill="#fff" fill-opacity=".22" transform="rotate(-30 -15 -22)"/>
     </symbol>
+    <!-- Art-deco fan -->
+    <symbol id="i-fan" viewBox="0 0 120 62">
+      <g fill="none" stroke="#d4af37" stroke-width="1">
+        <path pathLength="1" d="M10 58A50 50 0 0 1 110 58"/>
+        <path pathLength="1" d="M24 58A36 36 0 0 1 96 58" stroke-opacity=".7"/>
+        <path pathLength="1" d="M46.0 58.0L10.0 58.0M47.1 52.6L13.8 38.9M50.1 48.1L24.6 22.6M54.6 45.1L40.9 11.8M60.0 44.0L60.0 8.0M65.4 45.1L79.1 11.8M69.9 48.1L95.4 22.6M72.9 52.6L106.2 38.9M74.0 58.0L110.0 58.0" stroke-opacity=".6"/>
+        <path pathLength="1" d="M0 61H120" stroke="#f3dc8a"/>
+      </g>
+      <path d="M60 0l5 5-5 5-5-5z" fill="#f3dc8a"/>
+      <path d="M60 46a12 12 0 0 1 12 12H48a12 12 0 0 1 12-12z" fill="#d4af37"/>
+    </symbol>
+
+    <!-- Rich corner ornament -->
+    <symbol id="i-corner-lux" viewBox="0 0 100 100">
+      <g fill="none" stroke="#d4af37">
+        <path pathLength="1" d="M2 98V30L30 2h68" stroke-width="1.6"/>
+        <path pathLength="1" d="M10 98V34L34 10h64" stroke-width=".8" stroke-opacity=".7"/>
+        <path pathLength="1" d="M18 74V38L38 18h36" stroke="#f3dc8a" stroke-width=".8" stroke-opacity=".6"/>
+        <path pathLength="1" d="M26 26L56 26M26 26L26 56M26 26L48 48" stroke-width=".8" stroke-opacity=".5"/>
+        <path pathLength="1" d="M52 26A26 26 0 0 1 26 52" stroke-width=".8" stroke-opacity=".6"/>
+      </g>
+      <path d="M26 18l8 8-8 8-8-8z" fill="#f3dc8a"/>
+      <circle cx="2" cy="98" r="2" fill="#d4af37"/><circle cx="98" cy="2" r="2" fill="#d4af37"/>
+    </symbol>
   </svg>
 
   <!-- ============ 1. Envelope intro ============ -->
   <div class="intro" id="intro" role="dialog" aria-label="Invitation envelope">
     <div class="intro__rays" aria-hidden="true"></div>
     <div class="intro__bokeh" id="bokeh" aria-hidden="true"></div>
+    <div class="intro__spot" aria-hidden="true"></div>
     <div class="intro__frame" aria-hidden="true">
-      <svg class="corner corner--tl"><use href="#i-corner"/></svg><svg class="corner corner--tr"><use href="#i-corner"/></svg>
-      <svg class="corner corner--bl"><use href="#i-corner"/></svg><svg class="corner corner--br"><use href="#i-corner"/></svg>
+      <svg class="corner corner--tl"><use href="#i-corner-lux"/></svg><svg class="corner corner--tr"><use href="#i-corner-lux"/></svg>
+      <svg class="corner corner--bl"><use href="#i-corner-lux"/></svg><svg class="corner corner--br"><use href="#i-corner-lux"/></svg>
+      <svg class="intro__fan intro__fan--top"><use href="#i-fan"/></svg>
+      <svg class="intro__fan intro__fan--bottom"><use href="#i-fan"/></svg>
     </div>
 
     <div class="intro__head">
-      <p class="intro__eyebrow">You are cordially invited</p>
-      <p class="intro__script">to a Golden Celebration</p>
+      <p class="intro__eyebrow">You are cordially invited to</p>
+      <p class="intro__script"><span class="foil">a Golden Celebration</span></p>
     </div>
 
     <div class="env-wrap">
@@ -115,8 +142,9 @@
 
         <div class="env__card" aria-hidden="true">
           <div class="env__card-inner">
+            <svg class="env__card-fan"><use href="#i-fan"/></svg>
             <span class="env__card-top">Celebrating</span>
-            <span class="env__card-50">50</span>
+            <span class="env__card-50 foil">50</span>
             <span class="env__card-name">Dato’ San</span>
             <span class="env__card-date">28 · 12 · 2026</span>
           </div>
@@ -161,12 +189,18 @@
             <path d="M40 0 L300 200 L560 0" fill="none" stroke="#d4af37" stroke-opacity=".5" stroke-width=".9"/>
             <path d="M80 0 L300 170 L520 0" fill="none" stroke="#d4af37" stroke-opacity=".25" stroke-width=".8"/>
           </svg>
+          <div class="env__liner"></div>
         </div>
+
+        <!-- Gold satin ribbon tied around the envelope -->
+        <span class="band band--l"></span><span class="band band--r"></span>
+        <span class="band band--t"></span><span class="band band--b"></span>
 
         <div class="env__shine" aria-hidden="true"></div>
 
         <button class="seal" id="seal" type="button" aria-label="Open the invitation">
           <span class="seal__glow"></span>
+          <span class="seal__tail seal__tail--l"></span><span class="seal__tail seal__tail--r"></span>
           <span class="seal__half seal__half--l"><svg><use href="#seal-art"/></svg></span>
           <span class="seal__half seal__half--r"><svg><use href="#seal-art"/></svg></span>
         </button>
@@ -185,32 +219,39 @@
       <div class="hero__rays" aria-hidden="true"></div>
       <div class="hero__glow" aria-hidden="true"></div>
       <div class="hero__inner">
-        <svg class="crown" viewBox="0 0 220 80" aria-hidden="true">
-          <g fill="none" stroke="#d4af37" stroke-width="1.1">
-            <path pathLength="1" d="M20 76 A90 90 0 0 1 200 76"/>
-            <path pathLength="1" d="M42 76 A68 68 0 0 1 178 76" stroke-opacity=".7"/>
-            <path pathLength="1" d="M64 76 A46 46 0 0 1 156 76" stroke-opacity=".5"/>
-            <path pathLength="1" d="M110 76V4M110 76L46 26M110 76L174 26M110 76L72 10M110 76L148 10M110 76L28 52M110 76L192 52" stroke-opacity=".55"/>
-          </g>
-          <path class="crown__gem" d="M110 0l6 6-6 6-6-6z" fill="#f3dc8a"/>
-          <circle cx="20" cy="76" r="2.5" fill="#d4af37"/><circle cx="200" cy="76" r="2.5" fill="#d4af37"/>
-        </svg>
-        <p class="eyebrow hero__eyebrow rise">The Golden Celebration of</p>
-        <h1 class="hero__name"><span>Dato’ San</span></h1>
-        <p class="hero__tagline">
-          <span class="rise">50 Years of Life, Love</span>
-          <span class="rise">&amp; Beautiful Memories</span>
-        </p>
+        <div class="arch">
+          <svg class="arch__art" viewBox="0 -24 400 384" aria-hidden="true">
+            <g class="arch__rays" stroke="#d4af37" stroke-width="1" fill="none">
+              <path pathLength="1" d="M161.4 159.6L55.1 131.2M163.7 153.1L64.1 106.6M167.2 147.1L77.1 84.0M171.7 141.7L93.9 63.9M177.1 137.2L114.0 47.1M183.1 133.7L136.6 34.1M189.6 131.4L161.2 25.1M196.5 130.2L186.9 20.6M203.5 130.2L213.1 20.6M210.4 131.4L238.8 25.1M216.9 133.7L263.4 34.1M222.9 137.2L286.0 47.1M228.3 141.7L306.1 63.9M232.8 147.1L322.9 84.0M236.3 153.1L335.9 106.6M238.6 159.6L344.9 131.2"/>
+            </g>
+            <g fill="none" stroke="#d4af37">
+              <path pathLength="1" d="M20 360V170A180 180 0 0 1 380 170V360" stroke-width="1.8"/>
+              <path pathLength="1" d="M40 360V172A160 160 0 0 1 360 172V360" stroke-width=".9" stroke-opacity=".75"/>
+              <path pathLength="1" d="M4 360V196H12V180H20M396 360V196H388V180H380" stroke-width="1.2"/>
+              <path pathLength="1" d="M20 300H40M360 300H380M20 250H40M360 250H380" stroke-width=".8" stroke-opacity=".6"/>
+            </g>
+            <path class="arch__gem" d="M200 -22l10 10-10 10-10-10z" fill="#f3dc8a"/>
+            <circle cx="20" cy="170" r="3" fill="#f3dc8a"/><circle cx="380" cy="170" r="3" fill="#f3dc8a"/>
+          </svg>
+          <div class="arch__content">
+            <p class="eyebrow hero__eyebrow rise">The Golden Celebration of</p>
+            <h1 class="hero__name"><span class="foil">Dato’ San</span></h1>
+            <p class="hero__tagline">
+              <span class="rise">50 Years of Life, Love</span>
+              <span class="rise">&amp; Beautiful Memories</span>
+            </p>
+          </div>
+        </div>
 
-        <figure class="frame rise glow-border" id="videoFrame">
-          <svg class="corner corner--tl"><use href="#i-corner"/></svg><svg class="corner corner--tr"><use href="#i-corner"/></svg>
-          <svg class="corner corner--bl"><use href="#i-corner"/></svg><svg class="corner corner--br"><use href="#i-corner"/></svg>
+        <figure class="frame rise" id="videoFrame">
+          <svg class="corner corner--tl"><use href="#i-corner-lux"/></svg><svg class="corner corner--tr"><use href="#i-corner-lux"/></svg>
+          <svg class="corner corner--bl"><use href="#i-corner-lux"/></svg><svg class="corner corner--br"><use href="#i-corner-lux"/></svg>
           <div class="frame__media" id="heroMedia">
             <!-- Placeholder shown until heroVideo is set in js/config.js -->
             <div class="hero50" id="hero50" aria-hidden="true">
               <div class="hero50__rays"></div>
               <div class="hero50__ring"></div>
-              <span class="hero50__num">50</span>
+              <span class="hero50__num foil">50</span>
               <span class="hero50__sub">Golden Jubilee</span>
               <span class="hero50__sweep"></span>
             </div>
@@ -235,16 +276,16 @@
 
     <!-- ============ 3. Invitation ============ -->
     <section class="section invite" id="invite">
-      <div class="deco-panel reveal">
-        <svg class="corner corner--tl"><use href="#i-corner"/></svg><svg class="corner corner--tr"><use href="#i-corner"/></svg>
-        <svg class="corner corner--bl"><use href="#i-corner"/></svg><svg class="corner corner--br"><use href="#i-corner"/></svg>
+      <div class="deco-panel chamfer reveal">
+        <svg class="corner corner--tl"><use href="#i-corner-lux"/></svg><svg class="corner corner--tr"><use href="#i-corner-lux"/></svg>
+        <svg class="corner corner--bl"><use href="#i-corner-lux"/></svg><svg class="corner corner--br"><use href="#i-corner-lux"/></svg>
 
-        <svg class="divider reveal"><use href="#i-divider"/></svg>
+        <svg class="panel-fan"><use href="#i-fan"/></svg>
         <p class="invite__lead reveal">A milestone this special deserves to be celebrated with the people who have made the journey meaningful.</p>
 
         <p class="invite__body reveal">With immense love and happiness,<br>the family of</p>
         <h2 class="invite__name reveal">Dato’ Sandra Sekaran</h2>
-        <p class="invite__aka reveal">@ Dato’ San</p>
+        <p class="invite__aka reveal"><span class="foil">@ Dato’ San</span></p>
         <p class="invite__body reveal">cordially invites you to join us in celebrating <strong>50 wonderful years</strong> of a life filled with love, laughter, achievements and cherished memories.</p>
         <p class="invite__body reveal">Let’s come together to make this milestone celebration a truly unforgettable one.</p>
       </div>
@@ -272,27 +313,28 @@
 
     <!-- ============ 4. Event details ============ -->
     <section class="section details" id="details">
+      <svg class="fan reveal"><use href="#i-fan"/></svg>
       <p class="eyebrow reveal">Save the Date</p>
-      <h2 class="title reveal">The Celebration</h2>
+      <h2 class="title reveal"><span class="foil">The Celebration</span></h2>
 
       <div class="datecard reveal">
         <span class="datecard__side" id="dDay">Monday</span>
         <span class="datecard__mid">
           <span class="datecard__ring"></span>
-          <span class="datecard__num" id="dNum">28</span>
+          <span class="datecard__num foil" id="dNum">28</span>
         </span>
         <span class="datecard__side" id="dMonth">December 2026</span>
       </div>
       <p class="details__time reveal"><svg><use href="#i-clock"/></svg><span id="dTime"></span></p>
 
       <div class="countdown reveal" id="countdown" aria-label="Countdown to the celebration">
-        <div><b id="cdD">00</b><span>Days</span></div>
-        <div><b id="cdH">00</b><span>Hours</span></div>
-        <div><b id="cdM">00</b><span>Minutes</span></div>
-        <div><b id="cdS">00</b><span>Seconds</span></div>
+        <div class="chamfer"><b id="cdD" class="foil">00</b><span>Days</span></div>
+        <div class="chamfer"><b id="cdH" class="foil">00</b><span>Hours</span></div>
+        <div class="chamfer"><b id="cdM" class="foil">00</b><span>Minutes</span></div>
+        <div class="chamfer"><b id="cdS" class="foil">00</b><span>Seconds</span></div>
       </div>
 
-      <div class="venue reveal glow-border">
+      <div class="venue chamfer reveal">
         <div class="venue__badge"><svg><use href="#i-pin"/></svg></div>
         <p class="eyebrow">The Venue</p>
         <h3 class="venue__name" id="vName"></h3>
@@ -307,21 +349,22 @@
 
     <!-- ============ 5. Gallery ============ -->
     <section class="section gallery" id="gallery">
-      <svg class="divider reveal"><use href="#i-divider"/></svg>
+      <svg class="fan reveal"><use href="#i-fan"/></svg>
       <p class="eyebrow reveal">Five Decades</p>
-      <h2 class="title reveal">Cherished Moments</h2>
+      <h2 class="title reveal"><span class="foil">Cherished Moments</span></h2>
       <div class="bento" id="bento"></div>
     </section>
 
     <!-- ============ 6. RSVP ============ -->
     <section class="section rsvp" id="rsvp">
+      <svg class="fan reveal"><use href="#i-fan"/></svg>
       <p class="eyebrow reveal">Kindly Respond</p>
-      <h2 class="title reveal">RSVP</h2>
+      <h2 class="title reveal"><span class="foil">RSVP</span></h2>
       <p class="rsvp__intro reveal">Kindly confirm your attendance<br>on or before <strong id="rsvpDeadline"></strong>.</p>
 
-      <div class="rsvp-card reveal glow-border" id="rsvpCard">
-        <svg class="corner corner--tl"><use href="#i-corner"/></svg><svg class="corner corner--tr"><use href="#i-corner"/></svg>
-        <svg class="corner corner--bl"><use href="#i-corner"/></svg><svg class="corner corner--br"><use href="#i-corner"/></svg>
+      <div class="rsvp-card chamfer reveal" id="rsvpCard">
+        <svg class="corner corner--tl"><use href="#i-corner-lux"/></svg><svg class="corner corner--tr"><use href="#i-corner-lux"/></svg>
+        <svg class="corner corner--bl"><use href="#i-corner-lux"/></svg><svg class="corner corner--br"><use href="#i-corner-lux"/></svg>
 
         <form id="rsvpForm" novalidate>
           <div class="field">
@@ -401,10 +444,11 @@
             <textPath href="#circ" textLength="496" lengthAdjust="spacing">FIFTY YEARS ✦ LIFE ✦ LOVE ✦ LAUGHTER ✦ MEMORIES ✦</textPath>
           </text>
         </svg>
-        <div class="medallion__core"><span>50</span></div>
+        <div class="medallion__rays"></div>
+        <div class="medallion__core"><span class="foil">50</span></div>
       </div>
 
-      <p class="closing__love reveal">With love,</p>
+      <p class="closing__love reveal"><span class="foil">With love,</span></p>
       <p class="closing__family reveal">Family of Dato’ Sandra Sekaran<br><span>@ Dato’ San</span></p>
       <p class="credit">Designed by <span id="designedBy"></span></p>
     </footer>
@@ -427,8 +471,8 @@
     <button class="lightbox__btn lightbox__next" id="lbNext" type="button" aria-label="Next photo"><svg><use href="#i-next"/></svg></button>
   </div>
 
-  <script src="js/config.js?v=2"></script>
-  <script src="js/fx.js?v=2"></script>
-  <script src="js/app.js?v=2"></script>
+  <script src="js/config.js?v=3"></script>
+  <script src="js/fx.js?v=3"></script>
+  <script src="js/app.js?v=3"></script>
 </body>
 </html>
