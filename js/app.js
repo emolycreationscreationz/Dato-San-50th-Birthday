@@ -172,7 +172,7 @@
         FX.confettiRain();
         celebrate();
       });
-      at(4700, function () { intro.remove(); });
+      at(4400, function () { intro.remove(); });
     }
     seal.addEventListener('click', function () { seal.blur(); open(); });
     $('#env').addEventListener('click', function (e) { if (!seal.contains(e.target)) open(); });

@@ -19,7 +19,7 @@
   var backMode = 0;   // 1 once the page is open: twinkles & fireworks go behind the text
   var W = 0, H = 0, DPR = 1;
   var mobile = Math.min(window.innerWidth, window.innerHeight) < 600;
-  var MAX = mobile ? 650 : 1400;
+  var MAX = mobile ? 450 : 1400;
   var GOLDS = ['#fff6d5', '#f7e7a1', '#f3dc8a', '#e8c66a', '#d4af37', '#c9a23a'];
   var CONFETTI = ['#f7e7a1', '#d4af37', '#b8912e', '#fff3c6', '#e8c66a', '#8a6a1f', '#ffffff'];
 
@@ -31,7 +31,7 @@
   function pick(a) { return a[(Math.random() * a.length) | 0]; }
 
   function resize() {
-    DPR = Math.min(window.devicePixelRatio || 1, 2);
+    DPR = Math.min(window.devicePixelRatio || 1, mobile ? 1.5 : 2);
     W = window.innerWidth; H = window.innerHeight;
     [cv, cvB].forEach(function (c) {
       c.width = W * DPR; c.height = H * DPR;
