@@ -84,8 +84,9 @@ WhatsApp and Call buttons are created automatically.
 3. **Deploy → New deployment → Web app**. Execute as: *Me*. Who has access: *Anyone*. Authorise.
 4. Copy the `/exec` URL into `js/config.js` → `rsvpApiUrl`.
 
-Each response becomes a row in the **RSVP** tab (Timestamp, Name, Phone, Attendance, Guests, Birthday Wishes).
-A **Summary** tab shows total guests attending and response counts.
+Each response becomes a row in the **RSVP** tab (Timestamp, Name, Phone, Attendance, Guests, Birthday Wishes, Non-Veg, Veg).
+A **Summary** tab shows total guests attending, response counts and total non-vegetarian / vegetarian meals.
+Guests who accept choose how many of their party are vegetarian; the rest are counted as non-vegetarian.
 
 While `rsvpApiUrl` is empty the site runs in **demo mode**: the form works but nothing is saved.
 

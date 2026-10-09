@@ -17,7 +17,7 @@
  */
 
 var TAB = 'RSVP';
-var HEADERS = ['Timestamp', 'Name', 'Phone', 'Attendance', 'Guests', 'Birthday Wishes'];
+var HEADERS = ['Timestamp', 'Name', 'Phone', 'Attendance', 'Guests', 'Birthday Wishes', 'Non-Veg', 'Veg'];
 
 function sheet_() {
   var ss = SpreadsheetApp.getActiveSpreadsheet();
@@ -30,21 +30,29 @@ function sheet_() {
       .setFontWeight('bold').setBackground('#0a0806').setFontColor('#d4af37');
     sh.setColumnWidth(1, 160); sh.setColumnWidth(2, 200); sh.setColumnWidth(3, 140);
     sh.setColumnWidth(4, 130); sh.setColumnWidth(5, 70); sh.setColumnWidth(6, 380);
-    summary_(ss);
   }
+  // Sheets made before the meal columns existed: add the new headings
+  if (sh.getRange(1, 7).getValue() !== 'Non-Veg') {
+    sh.getRange(1, 7, 1, 2).setValues([['Non-Veg', 'Veg']])
+      .setFontWeight('bold').setBackground('#0a0806').setFontColor('#d4af37');
+  }
+  summary_(ss);
   return sh;
 }
 
 function summary_(ss) {
-  if (ss.getSheetByName('Summary')) return;
-  var s = ss.insertSheet('Summary');
-  s.getRange('A1:B4').setValues([
+  var s = ss.getSheetByName('Summary');
+  if (s && s.getRange('A5').getValue() === 'Non-vegetarian meals') return;
+  if (!s) s = ss.insertSheet('Summary');
+  s.getRange('A1:B6').setValues([
     ['Total guests attending', '=SUMIF(RSVP!D:D,"Attending",RSVP!E:E)'],
     ['Responses — attending', '=COUNTIF(RSVP!D:D,"Attending")'],
     ['Responses — not attending', '=COUNTIF(RSVP!D:D,"Not Attending")'],
-    ['Total responses', '=COUNTA(RSVP!B:B)-1']
+    ['Total responses', '=COUNTA(RSVP!B:B)-1'],
+    ['Non-vegetarian meals', '=SUM(RSVP!G:G)'],
+    ['Vegetarian meals', '=SUM(RSVP!H:H)']
   ]);
-  s.getRange('A1:A4').setFontWeight('bold');
+  s.getRange('A1:A6').setFontWeight('bold');
   s.setColumnWidth(1, 240);
 }
 
@@ -82,12 +90,15 @@ function doPost(e) {
     if (!name || !attendance) return json_({ ok: false, error: 'Name and attendance are required' });
     var guests = attendance === 'Attending' ? Math.min(Math.max(parseInt(d.guests, 10) || 1, 1), 20) : 0;
     var wish = clean_(d.wish, 400);
+    // Meals: vegetarian count, the rest non-vegetarian (always adds up to the guests)
+    var veg = attendance === 'Attending' ? Math.min(Math.max(parseInt(d.veg, 10) || 0, 0), guests) : 0;
+    var nonVeg = attendance === 'Attending' ? guests - veg : 0;
 
     var lock = LockService.getScriptLock();
     lock.waitLock(10000);
     try {
       // Phone stored as text so leading zeros are kept
-      sheet_().appendRow([new Date(), name, "'" + phone.replace(/^'/, ''), attendance, guests, wish]);
+      sheet_().appendRow([new Date(), name, "'" + phone.replace(/^'/, ''), attendance, guests, wish, nonVeg, veg]);
     } finally {
       lock.releaseLock();
     }

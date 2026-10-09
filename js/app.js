@@ -359,20 +359,43 @@
     }
 
     function attendance() { var r = $('input[name="attendance"]:checked', form); return r ? r.value : ''; }
+    // Meals always add up to the number of guests: vegetarian count, the rest non-vegetarian
+    var veg = 0, mealField = $('#mealField');
+    function bump(e) { e.classList.remove('bump'); void e.offsetWidth; e.classList.add('bump'); }
+    function setMeals(v) {
+      var n = Number(guests.value) || 1;
+      v = Math.min(Math.max(v, 0), n);
+      var changed = v !== veg;
+      veg = v;
+      $('#fVeg').textContent = veg; $('#fNonVeg').textContent = n - veg;
+      if (changed) { bump($('#fVeg')); bump($('#fNonVeg')); }
+      $('[data-meal="veg"][data-d="-1"]', form).disabled = veg <= 0;
+      $('[data-meal="veg"][data-d="1"]', form).disabled = veg >= n;
+      $('[data-meal="nonveg"][data-d="-1"]', form).disabled = veg >= n;
+      $('[data-meal="nonveg"][data-d="1"]', form).disabled = veg <= 0;
+      $('#mealHint').textContent = n > 1 ? '(for your ' + n + ' guests)' : '(for each guest)';
+    }
+    $$('[data-meal]', form).forEach(function (b) {
+      b.addEventListener('click', function () {
+        var d = Number(b.getAttribute('data-d'));
+        setMeals(b.getAttribute('data-meal') === 'veg' ? veg + d : veg - d);
+      });
+    });
     function setGuests(n) {
       n = Math.min(Math.max(n, 1), max);
-      if (String(n) !== guests.value) { guests.classList.remove('bump'); void guests.offsetWidth; guests.classList.add('bump'); }
+      if (String(n) !== guests.value) bump(guests);
       guests.value = n;
       $('[data-step="-1"]', form).disabled = n <= 1;
       $('[data-step="1"]', form).disabled = n >= max;
+      setMeals(veg);
     }
     setGuests(1);
-    $$('.stepper__btn', form).forEach(function (b) {
+    $$('[data-step]', form).forEach(function (b) {
       b.addEventListener('click', function () { setGuests(Number(guests.value) + Number(b.getAttribute('data-step'))); });
     });
     $$('input[name="attendance"]', form).forEach(function (r) {
       r.addEventListener('change', function () {
-        guestField.hidden = attendance() !== 'Attending';
+        guestField.hidden = mealField.hidden = attendance() !== 'Attending';
         r.closest('.field').classList.remove('invalid');
         err.textContent = '';
       });
@@ -397,6 +420,8 @@
         phone: $('#fPhone').value.trim(),
         attendance: attendance(),
         guests: attendance() === 'Attending' ? Number(guests.value) || 1 : 0,
+        veg: attendance() === 'Attending' ? veg : 0,
+        nonVeg: attendance() === 'Attending' ? (Number(guests.value) || 1) - veg : 0,
         wish: $('#fWish').value.trim(),
         website: form.website.value
       };
@@ -413,7 +438,7 @@
           : 'We’re sorry you can’t make it — thank you for letting us know. You’ll be missed!';
         form.hidden = true; done.hidden = false;
         if (data.wish) { wishList.unshift({ name: data.name, wish: data.wish }); renderWishes(); }
-        form.reset(); setGuests(1); guestField.hidden = true;
+        form.reset(); veg = 0; setGuests(1); guestField.hidden = mealField.hidden = true;
         done.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'center' });
         if (yes) setTimeout(function () {
           var t = $('.rsvp-done__tick').getBoundingClientRect();

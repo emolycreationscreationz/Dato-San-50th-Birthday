@@ -21,7 +21,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800&family=Cinzel+Decorative:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Great+Vibes&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=12">
+  <link rel="stylesheet" href="css/style.css?v=13">
 </head>
 <body class="locked">
 
@@ -395,6 +395,28 @@
             </div>
           </div>
 
+          <fieldset class="field field--meal" id="mealField" hidden>
+            <legend>Meal Preference <small id="mealHint">(for each guest)</small></legend>
+            <div class="meals">
+              <div class="meal">
+                <span class="meal__name">Non-Veg</span>
+                <div class="stepper stepper--sm">
+                  <button type="button" class="stepper__btn" data-meal="nonveg" data-d="-1" aria-label="Fewer non-vegetarian meals">−</button>
+                  <output id="fNonVeg" aria-live="polite">1</output>
+                  <button type="button" class="stepper__btn" data-meal="nonveg" data-d="1" aria-label="More non-vegetarian meals">+</button>
+                </div>
+              </div>
+              <div class="meal">
+                <span class="meal__name">Veg</span>
+                <div class="stepper stepper--sm">
+                  <button type="button" class="stepper__btn" data-meal="veg" data-d="-1" aria-label="Fewer vegetarian meals">−</button>
+                  <output id="fVeg" aria-live="polite">0</output>
+                  <button type="button" class="stepper__btn" data-meal="veg" data-d="1" aria-label="More vegetarian meals">+</button>
+                </div>
+              </div>
+            </div>
+          </fieldset>
+
           <div class="field">
             <label for="fWish">Birthday Wishes <small>(optional)</small></label>
             <textarea id="fWish" name="wish" rows="3" maxlength="400" placeholder="A few words for Dato’ San…"></textarea>
@@ -479,8 +501,8 @@
     <button class="lightbox__btn lightbox__next" id="lbNext" type="button" aria-label="Next photo"><svg><use href="#i-next"/></svg></button>
   </div>
 
-  <script src="js/config.js?v=12"></script>
-  <script src="js/fx.js?v=12"></script>
-  <script src="js/app.js?v=12"></script>
+  <script src="js/config.js?v=13"></script>
+  <script src="js/fx.js?v=13"></script>
+  <script src="js/app.js?v=13"></script>
 </body>
 </html>
