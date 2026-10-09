@@ -446,26 +446,33 @@
       item.appendChild(el('p', 'wish__name', w.name || 'A guest'));
       box.appendChild(item);
     });
-    box.scrollTop = 0;
-    $('#wishCount').textContent = wishList.length + (wishList.length === 1 ? ' wish' : ' wishes');
+    $('#wishCount').textContent = wishList.length + (wishList.length === 1 ? ' birthday wish' : ' birthday wishes');
   }
+  var lastWishes = '';
   function loadWishes() {
     if (!C.rsvpApiUrl) { renderWishes(); return Promise.resolve(); }
     return fetch(C.rsvpApiUrl + '?t=' + Date.now(), { cache: 'no-store' })
       .then(function (r) { return r.json(); })
-      .then(function (j) { wishList = (j && Array.isArray(j.wishes)) ? j.wishes : wishList; renderWishes(); })
+      .then(function (j) {
+        if (!j || !Array.isArray(j.wishes)) { if (!lastWishes) renderWishes(); return; }
+        var key = JSON.stringify(j.wishes);
+        if (key === lastWishes) return;              // nothing new, leave the box as it is
+        var box = $('#wishList'), fromBottom = box.scrollHeight - box.scrollTop;
+        var reading = box.scrollTop > 10;
+        lastWishes = key; wishList = j.wishes; renderWishes();
+        if (reading) box.scrollTop = box.scrollHeight - fromBottom;   // keep the guest's place
+      })
       .catch(function () {
-        if (wishList.length) return renderWishes();
+        if (lastWishes) return;
         $('#wishList').textContent = '';
-        $('#wishList').appendChild(el('p', 'wishes__empty', 'Wishes could not be loaded. Tap Refresh to try again.'));
+        $('#wishList').appendChild(el('p', 'wishes__empty', 'Wishes are on their way…'));
       });
   }
+  // Load now, then check for new wishes every 30 seconds while the invitation is open
   function wishes() {
     loadWishes();
-    $('#btnWishes').addEventListener('click', function () {
-      var b = this; b.disabled = true; b.textContent = 'Refreshing…';
-      loadWishes().then(function () { b.disabled = false; b.textContent = 'Refresh'; });
-    });
+    setInterval(function () { if (!document.hidden) loadWishes(); }, 30000);
+    document.addEventListener('visibilitychange', function () { if (!document.hidden) loadWishes(); });
   }
 
   function send(data) {
