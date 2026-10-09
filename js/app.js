@@ -83,7 +83,7 @@
   }
 
   /* ---------- Hero video ---------- */
-  var video = null;
+  var video = null, userSound = false;
   function heroMedia() {
     var frame = $('#videoFrame');
     if (C.heroVideoRatio) frame.style.setProperty('--ratio', C.heroVideoRatio);
@@ -94,7 +94,7 @@
     video.setAttribute('playsinline', ''); video.setAttribute('muted', '');
     video.preload = 'auto';
     if (C.heroPoster) video.poster = C.heroPoster;
-    [[C.heroVideoWebm, 'video/webm'], [C.heroVideo, 'video/mp4']].forEach(function (s) {
+    [[C.heroVideo, 'video/mp4'], [C.heroVideoWebm, 'video/webm']].forEach(function (s) {
       if (!s[0]) return;
       var src = document.createElement('source');
       src.src = s[0]; src.type = s[1];
@@ -115,6 +115,22 @@
       syncBtn();
     });
     video.addEventListener('volumechange', syncBtn);
+    btn.addEventListener('click', function () { userSound = true; });
+
+    // Sound plays on the first run only; after that it keeps looping quietly
+    var lastT = 0;
+    video.addEventListener('timeupdate', function () {
+      if (video.currentTime + 1 < lastT && !userSound) video.muted = true;
+      lastT = video.currentTime;
+    });
+    // Pause while the video is scrolled off screen
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (en) {
+        if (!document.body.classList.contains('opened')) return;
+        if (en[0].isIntersecting) video.play().catch(function () {});
+        else video.pause();
+      }, { threshold: .2 }).observe(frame);
+    }
   }
 
   // Called inside the tap on the seal, so browsers allow sound.

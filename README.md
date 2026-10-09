@@ -37,7 +37,14 @@ assets/og-cover.jpg         preview image when the link is shared on WhatsApp
 google-apps-script/Code.gs  RSVP backend (Google Sheets)
 ```
 
-## Adding the AI video
+## The AI video
+
+Current video: `assets/video/dato-san.mp4` (1280×720, 10 s, with sound) plus `dato-san.webm` as a fallback copy,
+and `dato-san-poster.jpg` shown while it loads. The sound plays on the first run after the seal is tapped;
+after that it keeps looping silently (guests can turn sound back on with the button on the video).
+It pauses when scrolled off screen.
+
+To replace it:
 
 1. Put the file in `assets/video/` (e.g. `dato-san.mp4`; H.264 MP4 plays everywhere. Keep it under ~15 MB).
 2. In `js/config.js` set `heroVideo: "assets/video/dato-san.mp4"`.
@@ -47,7 +54,9 @@ google-apps-script/Code.gs  RSVP backend (Google Sheets)
 The video starts from the beginning the moment the seal is tapped, with sound if the browser allows it.
 A sound on/off button sits on the video.
 
-## Adding the 5 photos
+## The 5 photos
+
+Current photos: `assets/photos/dato-san-1.webp` … `dato-san-5.webp`.
 
 Put them in `assets/photos/` (`.webp` or `.jpg`, about 1600px on the long side) and fill in `gallery` in `js/config.js`.
 Photo 1 is the large portrait (best as a portrait shot of Dato’ San).

@@ -26,20 +26,20 @@ window.EVENT = {
 
   // --- Hero video (AI video) ---
   // Put the file in assets/video/ and fill in the path. Empty = animated "50" placeholder.
-  heroVideo: "",                 // e.g. "assets/video/dato-san.mp4"
-  heroVideoWebm: "",             // optional fallback, e.g. "assets/video/dato-san.webm"
-  heroPoster: "",                // optional still shown while the video loads
+  heroVideo: "assets/video/dato-san.mp4",       // AI video (16:9, with sound)
+  heroVideoWebm: "assets/video/dato-san.webm",  // fallback copy for browsers without MP4
+  heroPoster: "assets/video/dato-san-poster.jpg",   // still shown while the video loads
   heroVideoRatio: "16 / 9",      // "16 / 9" landscape, "9 / 16" portrait, "1 / 1" square
 
   // --- Gallery (5 photos) ---
   // Put photos in assets/photos/ and fill in src. Empty src = placeholder frame.
   // focus = which part of the photo stays visible when cropped ("x% y%").
   gallery: [
-    { src: "", focus: "50% 30%", alt: "Dato’ San" },
-    { src: "", focus: "50% 50%", alt: "Cherished memory 2" },
-    { src: "", focus: "50% 50%", alt: "Cherished memory 3" },
-    { src: "", focus: "50% 50%", alt: "Cherished memory 4" },
-    { src: "", focus: "50% 50%", alt: "Cherished memory 5" }
+    { src: "assets/photos/dato-san-1.webp", focus: "32% 30%", alt: "Dato’ San in white, smiling with a thumbs-up at a festive evening" },
+    { src: "assets/photos/dato-san-2.webp", focus: "62% 40%", alt: "Dato’ San on the golf course at sunset" },
+    { src: "assets/photos/dato-san-3.webp", focus: "50% 62%", alt: "Dato’ San with arms wide open in Uçhisar, Cappadocia" },
+    { src: "assets/photos/dato-san-4.webp", focus: "50% 38%", alt: "Dato’ San standing with arms crossed outside a garden market" },
+    { src: "assets/photos/dato-san-5.webp", focus: "46% 42%", alt: "Dato’ San framed through a carved marble window" }
   ],
 
   // --- Further details (PLACEHOLDER — replace with real name & number) ---
