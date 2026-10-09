@@ -5,14 +5,21 @@ Theme: rich gold & black. Static site (HTML/CSS/JS), no build step.
 
 ## Flow
 
-1. **Envelope intro**: black envelope with gold foil lines and a gold "50" wax seal. Tapping it
-   opens the flap, the card rises, and the envelope fades away to reveal the page.
-2. **Hero**: name, tagline and a framed **AI video** (an animated gold "50" stands in until the video is added).
-3. **Invitation**: the family's message.
-4. **The Celebration**: date, time, countdown, venue with Google Maps / Waze, and Add to Calendar (.ics).
-5. **Cherished Moments**: 5 photos (one large portrait plus four smaller; tap to enlarge).
-6. **RSVP**: name, phone, attending / declining, number of guests, birthday wishes. Saved to Google Sheets.
-7. **Contact** and the closing message.
+1. **Envelope intro**: art-deco gold frame, rotating light rays, drifting bokeh and twinkling stars.
+   The envelope floats in, a gold wax seal stamps onto it and light sweeps across the foil.
+   Tapping the seal cracks it in two with a burst of gold sparks and confetti, the flap swings open,
+   the card rises and comes forward in a golden flash, and the page appears under falling confetti.
+2. **Hero**: the crown ornament draws itself, "Dato’ San" writes itself in gold, and gold fireworks
+   burst behind the text. The framed **AI video** sits below (an animated gold "50" stands in until it's added).
+3. **Gold ribbon** scrolling "Fifty Years · Life · Love · Laughter · Achievements · Cherished Memories".
+4. **Invitation** in an art-deco panel whose corners draw in, plus two champagne flutes that clink with a sparkle.
+5. **The Celebration**: date in a spinning gold ring, flip-style countdown, venue card with a travelling-light border,
+   Google Maps / Waze and Add to Calendar (.ics).
+6. **Cherished Moments**: 5 photos (one large portrait plus four smaller) that tilt in, with light sweeps; tap to enlarge.
+7. **RSVP** card with a travelling-light border; a successful "Joyfully Accept" bursts into gold confetti. Saved to Google Sheets.
+8. **Contact**, then the closing with a spinning "50" medallion and a final round of fireworks.
+
+Gold sparkles follow the finger or mouse. Everything respects the phone's "Reduce Motion" setting.
 
 ## Structure
 
@@ -21,6 +28,7 @@ index.html                  page structure + icons + envelope artwork
 css/style.css               design & colours (tokens at the top: --gold, --black, …)
 js/config.js                ⭐ ALL DETAILS & SETTINGS — edit this file
 js/app.js                   envelope, video, countdown, gallery, RSVP
+js/fx.js                    gold sparkles, confetti & fireworks (canvas)
 assets/photos/              gallery photos
 assets/video/               hero AI video
 assets/og-cover.jpg         preview image when the link is shared on WhatsApp

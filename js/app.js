@@ -63,20 +63,23 @@
     });
   }
 
-  /* ---------- Gold dust on the intro ---------- */
-  function dust() {
+  /* ---------- Intro atmosphere: drifting bokeh + twinkles ---------- */
+  function atmosphere() {
     if (reduced) return;
-    var box = $('.intro__dust'), n = window.innerWidth < 600 ? 26 : 44;
+    var box = $('#bokeh'), n = FX.mobile ? 9 : 16;
     for (var i = 0; i < n; i++) {
-      var p = el('i');
-      p.style.left = (Math.random() * 100) + '%';
-      p.style.setProperty('--s', (1.5 + Math.random() * 3.5).toFixed(1) + 'px');
-      p.style.setProperty('--d', (7 + Math.random() * 9).toFixed(1) + 's');
-      p.style.setProperty('--delay', (-Math.random() * 14).toFixed(1) + 's');
-      p.style.setProperty('--x', ((Math.random() - .5) * 120).toFixed(0) + 'px');
-      p.style.setProperty('--o', (.35 + Math.random() * .6).toFixed(2));
-      box.appendChild(p);
+      var b = el('i'), size = 30 + Math.random() * 120;
+      b.style.width = b.style.height = size + 'px';
+      b.style.left = (Math.random() * 100 - 10) + '%';
+      b.style.top = (Math.random() * 100 - 10) + '%';
+      b.style.setProperty('--d', (10 + Math.random() * 12).toFixed(1) + 's');
+      b.style.setProperty('--delay', (-Math.random() * 10).toFixed(1) + 's');
+      b.style.setProperty('--x', ((Math.random() - .5) * 120).toFixed(0) + 'px');
+      b.style.setProperty('--y', ((Math.random() - .5) * 120).toFixed(0) + 'px');
+      b.style.setProperty('--o', (.25 + Math.random() * .45).toFixed(2));
+      box.appendChild(b);
     }
+    FX.sparkleField(FX.mobile ? 34 : 70);
   }
 
   /* ---------- Hero video ---------- */
@@ -136,23 +139,44 @@
       opened = true;
       window.scrollTo(0, 0);
       startVideo();
-      intro.classList.add('opening');                        // seal lifts away
-      at(320, function () { intro.classList.add('flap'); });        // flap swings open
-      at(820, function () { intro.classList.add('flap-back'); });   // flap drops behind the card
-      at(900, function () { intro.classList.add('card'); });        // card rises
-      at(2350, function () {
-        intro.classList.add('out');                          // envelope glides away
+      var r = seal.getBoundingClientRect(), cx = r.left + r.width / 2, cy = r.top + r.height / 2;
+      intro.classList.add('press');                                   // seal trembles
+      at(260, function () {
+        intro.classList.add('opening');                               // seal cracks in two
+        FX.burst(cx, cy);
+      });
+      at(560, function () { intro.classList.add('flap'); });          // flap swings open
+      at(1060, function () { intro.classList.add('flap-back', 'card'); }); // card rises
+      at(2350, function () { intro.classList.add('zoom'); });         // card comes forward, golden flash
+      at(2700, function () {
+        intro.classList.add('out');                                   // page appears under the flash
         document.body.classList.remove('locked');
         document.body.classList.add('opened');
         window.scrollTo(0, 0);
-        $$('.hero .reveal').forEach(function (r) { r.classList.add('in'); });
+        FX.layer(1);
+        FX.confettiRain();
+        celebrate();
       });
-      at(3500, function () { intro.remove(); });
+      at(4300, function () { intro.remove(); });
     }
-    seal.addEventListener('click', open);
-    // The whole envelope is tappable too
-    $('#env').addEventListener('click', function (e) { if (e.target !== seal) open(); });
+    seal.addEventListener('click', function () { seal.blur(); open(); });
+    $('#env').addEventListener('click', function (e) { if (!seal.contains(e.target)) open(); });
     seal.focus({ preventScroll: true });
+  }
+
+  /* ---------- Fireworks over the hero while it is on screen ---------- */
+  var heroOn = true;
+  function celebrate() {
+    if (reduced) return;
+    [700, 1300, 2100, 2700].forEach(function (d, i) {
+      setTimeout(function () { FX.firework(window.innerWidth * (i % 2 ? .75 : .25) + (Math.random() - .5) * 50); }, d);
+    });
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (en) { heroOn = en[0].isIntersecting; }, { threshold: .35 }).observe($('#home'));
+    }
+    (function loop() {
+      setTimeout(function () { if (heroOn && !document.hidden) FX.firework(); loop(); }, 2600 + Math.random() * 2600);
+    })();
   }
 
   /* ---------- Scroll reveals & active dock item ---------- */
@@ -161,7 +185,10 @@
     if (!('IntersectionObserver' in window)) { items.forEach(function (r) { r.classList.add('in'); }); return; }
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (en) {
-        if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); }
+        if (!en.isIntersecting) return;
+        en.target.classList.add('in'); io.unobserve(en.target);
+        if (en.target.id === 'cheers') clink();
+        if (en.target.id === 'medallion') finale();
       });
     }, { rootMargin: '0px 0px -8% 0px', threshold: .12 });
     items.forEach(function (r) { io.observe(r); });
@@ -189,10 +216,12 @@
         return;
       }
       var s = Math.floor(ms / 1000);
-      ids[0].textContent = pad(Math.floor(s / 86400));
-      ids[1].textContent = pad(Math.floor(s % 86400 / 3600));
-      ids[2].textContent = pad(Math.floor(s % 3600 / 60));
-      ids[3].textContent = pad(s % 60);
+      [Math.floor(s / 86400), Math.floor(s % 86400 / 3600), Math.floor(s % 3600 / 60), s % 60].forEach(function (v, i) {
+        var t = pad(v), b = ids[i];
+        if (b.textContent === t) return;
+        b.textContent = t;
+        b.classList.remove('flip'); void b.offsetWidth; b.classList.add('flip');
+      });
       setTimeout(tick, 1000 - Date.now() % 1000);
     }
     tick();
@@ -243,7 +272,8 @@
         t.appendChild(icon('i-camera'));
         t.appendChild(el('span', null, 'Photo ' + (i + 1)));
       }
-      t.style.transitionDelay = (i * 0.08) + 's';
+      t.style.transitionDelay = (i * 0.12) + 's';
+      t.style.setProperty('--sd', (i * 1.1) + 's');
       box.appendChild(t);
     });
 
@@ -304,6 +334,7 @@
     function attendance() { var r = $('input[name="attendance"]:checked', form); return r ? r.value : ''; }
     function setGuests(n) {
       n = Math.min(Math.max(n, 1), max);
+      if (String(n) !== guests.value) { guests.classList.remove('bump'); void guests.offsetWidth; guests.classList.add('bump'); }
       guests.value = n;
       $('[data-step="-1"]', form).disabled = n <= 1;
       $('[data-step="1"]', form).disabled = n >= max;
@@ -356,6 +387,11 @@
         form.hidden = true; done.hidden = false;
         form.reset(); setGuests(1); guestField.hidden = true;
         done.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'center' });
+        if (yes) setTimeout(function () {
+          var t = $('.rsvp-done__tick').getBoundingClientRect();
+          FX.burst(t.left + t.width / 2, t.top + t.height / 2);
+          FX.confettiRain(FX.mobile ? 60 : 110);
+        }, 700);
       }).catch(function () {
         fail('Sorry, your RSVP could not be sent. Please check your connection and try again.');
       }).then(function () {
@@ -378,8 +414,54 @@
       .then(function (j) { if (!j || !j.ok) throw new Error((j && j.error) || 'Server error'); return j; });
   }
 
+  /* ---------- Champagne clink & finale ---------- */
+  function clink() {
+    setTimeout(function () {
+      var g = $('.cheers__glasses').getBoundingClientRect();
+      FX.burst(g.left + g.width / 2, g.top + 12, { n: FX.mobile ? 40 : 60, speed: 6, confetti: 0 });
+    }, 1300);
+  }
+  var finaleDone = false;
+  function finale() {
+    if (finaleDone || reduced) return;
+    finaleDone = true;
+    [0, 450, 900, 1500].forEach(function (d, i) {
+      setTimeout(function () { FX.firework(window.innerWidth * [.3, .7, .5, .2][i], window.innerHeight * (.15 + Math.random() * .2)); }, d);
+    });
+  }
+
+  /* ---------- Scroll progress + sparkle trail ---------- */
+  function extras() {
+    var bar = $('#progress'), ticking = false;
+    window.addEventListener('scroll', function () {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(function () {
+        var h = document.documentElement.scrollHeight - window.innerHeight;
+        bar.style.transform = 'scaleX(' + (h > 0 ? window.scrollY / h : 0) + ')';
+        ticking = false;
+      });
+    }, { passive: true });
+
+    if (reduced) return;
+    var lastT = 0;
+    window.addEventListener('pointermove', function (e) {
+      var now = Date.now();
+      if (now - lastT < 28) return;
+      lastT = now;
+      FX.trail(e.clientX, e.clientY);
+    }, { passive: true });
+    window.addEventListener('touchmove', function (e) {
+      var now = Date.now();
+      if (now - lastT < 40) return;
+      lastT = now;
+      FX.trail(e.touches[0].clientX, e.touches[0].clientY);
+    }, { passive: true });
+  }
+
   fill();
-  dust();
+  atmosphere();
+  extras();
   heroMedia();
   gallery();
   envelope();
