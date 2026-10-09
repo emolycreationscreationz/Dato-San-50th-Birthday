@@ -168,6 +168,7 @@
         intro.classList.add('out');                                   // page appears under the flash
         document.body.classList.remove('locked');
         document.body.classList.add('opened');
+        $('#home').classList.add('in');
         window.scrollTo(0, 0);
         FX.layer(1);
         FX.confettiRain();
@@ -196,8 +197,20 @@
   }
 
   /* ---------- Scroll reveals & active dock item ---------- */
+  /* ---------- Art-deco border on every page ---------- */
+  function frames() {
+    var c = '<svg class="corner corner--%"><use href="#i-corner-lux"/></svg>';
+    $$('.page').forEach(function (p) {
+      var f = el('span', 'page__frame');
+      f.setAttribute('aria-hidden', 'true');
+      f.innerHTML = ['tl', 'tr', 'bl', 'br'].map(function (k) { return c.replace('%', k); }).join('') +
+        '<span class="page__gem"></span><svg class="page__fan"><use href="#i-fan"/></svg>';
+      p.insertBefore(f, p.firstChild);
+    });
+  }
+
   function reveals() {
-    var items = $$('.reveal').filter(function (r) { return !r.closest('.hero'); });
+    var items = $$('.reveal, .page').filter(function (r) { return !r.closest('.hero'); });
     if (!('IntersectionObserver' in window)) { items.forEach(function (r) { r.classList.add('in'); }); return; }
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (en) {
@@ -476,6 +489,7 @@
   }
 
   fill();
+  frames();
   atmosphere();
   extras();
   heroMedia();

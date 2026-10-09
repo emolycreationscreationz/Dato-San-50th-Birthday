@@ -19,7 +19,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800&family=Cinzel+Decorative:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Great+Vibes&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=5">
+  <link rel="stylesheet" href="css/style.css?v=6">
 </head>
 <body class="locked">
 
@@ -215,7 +215,7 @@
   <main id="main">
 
     <!-- ============ 2. Hero ============ -->
-    <header class="hero" id="home">
+    <header class="page page--hero hero" id="home">
       <div class="hero__rays" aria-hidden="true"></div>
       <div class="hero__glow" aria-hidden="true"></div>
       <div class="hero__inner">
@@ -275,12 +275,9 @@
     </div>
 
     <!-- ============ 3. Invitation ============ -->
-    <section class="section invite" id="invite">
-      <div class="deco-panel chamfer reveal">
-        <svg class="corner corner--tl"><use href="#i-corner-lux"/></svg><svg class="corner corner--tr"><use href="#i-corner-lux"/></svg>
-        <svg class="corner corner--bl"><use href="#i-corner-lux"/></svg><svg class="corner corner--br"><use href="#i-corner-lux"/></svg>
-
-        <svg class="panel-fan"><use href="#i-fan"/></svg>
+    <section class="section page page--invite invite" id="invite">
+      <div class="deco-panel">
+        <svg class="fan reveal"><use href="#i-fan"/></svg>
         <p class="invite__lead reveal">A milestone this special deserves to be celebrated with the people who have made the journey meaningful.</p>
 
         <p class="invite__body reveal">With immense love and happiness,<br>the family of</p>
@@ -312,7 +309,7 @@
     </section>
 
     <!-- ============ 4. Event details ============ -->
-    <section class="section details" id="details">
+    <section class="section page page--details details" id="details">
       <svg class="fan reveal"><use href="#i-fan"/></svg>
       <p class="eyebrow reveal">Save the Date</p>
       <h2 class="title reveal"><span class="foil">The Celebration</span></h2>
@@ -348,7 +345,7 @@
     </section>
 
     <!-- ============ 5. Gallery ============ -->
-    <section class="section gallery" id="gallery">
+    <section class="section page page--gallery gallery" id="gallery">
       <svg class="fan reveal"><use href="#i-fan"/></svg>
       <p class="eyebrow reveal">Five Decades</p>
       <h2 class="title reveal"><span class="foil">Cherished Moments</span></h2>
@@ -356,7 +353,7 @@
     </section>
 
     <!-- ============ 6. RSVP ============ -->
-    <section class="section rsvp" id="rsvp">
+    <section class="section page page--rsvp rsvp" id="rsvp">
       <svg class="fan reveal"><use href="#i-fan"/></svg>
       <p class="eyebrow reveal">Kindly Respond</p>
       <h2 class="title reveal"><span class="foil">RSVP</span></h2>
@@ -423,16 +420,16 @@
           <p>Thank you for your kind responses. For any enquiries, please reach out to the contact below.</p>
         </div>
       </div>
-    </section>
 
-    <!-- ============ 7. Contact ============ -->
-    <section class="section contact" id="contact">
-      <p class="contact__lead reveal">For further details, please contact</p>
-      <ul class="contact__list reveal" id="contactList"></ul>
+      <!-- 7. Contact -->
+      <div class="contact" id="contact">
+        <p class="contact__lead reveal">For further details, please contact</p>
+        <ul class="contact__list reveal" id="contactList"></ul>
+      </div>
     </section>
 
     <!-- ============ 8. Closing ============ -->
-    <footer class="closing" id="closing">
+    <footer class="page page--closing closing" id="closing">
       <svg class="divider reveal"><use href="#i-divider"/></svg>
       <p class="closing__text reveal">Your presence will make this special celebration even more memorable.</p>
       <p class="closing__text closing__text--em reveal">We look forward to celebrating this beautiful milestone with you!</p>
@@ -471,8 +468,8 @@
     <button class="lightbox__btn lightbox__next" id="lbNext" type="button" aria-label="Next photo"><svg><use href="#i-next"/></svg></button>
   </div>
 
-  <script src="js/config.js?v=5"></script>
-  <script src="js/fx.js?v=5"></script>
-  <script src="js/app.js?v=5"></script>
+  <script src="js/config.js?v=6"></script>
+  <script src="js/fx.js?v=6"></script>
+  <script src="js/app.js?v=6"></script>
 </body>
 </html>
