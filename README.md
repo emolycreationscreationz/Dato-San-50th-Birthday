@@ -91,8 +91,8 @@ If you change the Apps Script code, use **Deploy → Manage deployments → Edit
 No build. **Add new site → Import an existing project → GitHub** → choose this repo.
 Leave the build command empty; the publish directory `.` is already set in `netlify.toml`.
 
-After you get the domain, change `og:image` in `index.html` to the full URL
-(e.g. `https://dato-san-50.netlify.app/assets/og-cover.jpg`) so the preview image shows on WhatsApp.
+Live site: https://datosan50-emolycreations.netlify.app — `og:image` in `index.html` already points there
+so the preview image shows on WhatsApp. If the address changes, update `og:image` and `og:url`.
 
 ## Test locally
 
