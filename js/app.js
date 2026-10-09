@@ -412,6 +412,7 @@
           ? 'Your RSVP for ' + data.guests + (data.guests > 1 ? ' guests' : ' guest') + ' has been received. We can’t wait to celebrate with you!'
           : 'We’re sorry you can’t make it — thank you for letting us know. You’ll be missed!';
         form.hidden = true; done.hidden = false;
+        if (data.wish) { wishList.unshift({ name: data.name, wish: data.wish }); renderWishes(); }
         form.reset(); setGuests(1); guestField.hidden = true;
         done.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'center' });
         if (yes) setTimeout(function () {
@@ -427,6 +428,44 @@
     });
 
     $('#btnAgain').addEventListener('click', function () { done.hidden = true; form.hidden = false; $('#fName').focus(); });
+  }
+
+  /* ---------- Birthday wishes wall ---------- */
+  var wishList = [];
+  function renderWishes() {
+    var box = $('#wishList');
+    box.textContent = '';
+    if (!wishList.length) {
+      box.appendChild(el('p', 'wishes__empty', 'No wishes yet. Be the first to send Dato’ San a birthday wish with your RSVP!'));
+      $('#wishCount').textContent = '';
+      return;
+    }
+    wishList.forEach(function (w) {
+      var item = el('article', 'wish');
+      item.appendChild(el('p', 'wish__text', w.wish));
+      item.appendChild(el('p', 'wish__name', w.name || 'A guest'));
+      box.appendChild(item);
+    });
+    box.scrollTop = 0;
+    $('#wishCount').textContent = wishList.length + (wishList.length === 1 ? ' wish' : ' wishes');
+  }
+  function loadWishes() {
+    if (!C.rsvpApiUrl) { renderWishes(); return Promise.resolve(); }
+    return fetch(C.rsvpApiUrl + '?t=' + Date.now(), { cache: 'no-store' })
+      .then(function (r) { return r.json(); })
+      .then(function (j) { wishList = (j && Array.isArray(j.wishes)) ? j.wishes : wishList; renderWishes(); })
+      .catch(function () {
+        if (wishList.length) return renderWishes();
+        $('#wishList').textContent = '';
+        $('#wishList').appendChild(el('p', 'wishes__empty', 'Wishes could not be loaded. Tap Refresh to try again.'));
+      });
+  }
+  function wishes() {
+    loadWishes();
+    $('#btnWishes').addEventListener('click', function () {
+      var b = this; b.disabled = true; b.textContent = 'Refreshing…';
+      loadWishes().then(function () { b.disabled = false; b.textContent = 'Refresh'; });
+    });
   }
 
   function send(data) {
@@ -498,4 +537,5 @@
   countdown();
   calendar();
   rsvp();
+  wishes();
 })();

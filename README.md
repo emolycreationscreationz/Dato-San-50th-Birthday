@@ -89,6 +89,10 @@ A **Summary** tab shows total guests attending and response counts.
 
 While `rsvpApiUrl` is empty the site runs in **demo mode**: the form works but nothing is saved.
 
+**Wishes wall**: the birthday wishes guests type in the RSVP form appear in a scrolling "Birthday Wishes"
+box under the RSVP form (newest first, name + wish; phone numbers are never shown). To hide a wish,
+delete its text in the sheet's "Birthday Wishes" column.
+
 The form closes automatically after `rsvpClosesAt` (15 Nov 2026, 11:59 PM). To keep it open, set `rsvpClosesAt: ""`.
 If you change the Apps Script code, use **Deploy → Manage deployments → Edit → New version** so the same URL keeps working.
 

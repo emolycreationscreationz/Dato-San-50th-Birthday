@@ -21,7 +21,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800&family=Cinzel+Decorative:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Great+Vibes&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=10">
+  <link rel="stylesheet" href="css/style.css?v=11">
 </head>
 <body class="locked">
 
@@ -420,6 +420,21 @@
         </div>
       </div>
 
+      <!-- Birthday wishes wall -->
+      <div class="wishes" id="wishes">
+        <p class="eyebrow reveal">Guest Book</p>
+        <h3 class="wishes__title reveal"><span class="foil">Birthday Wishes</span></h3>
+        <div class="wishes__box chamfer reveal">
+          <div class="wishes__list" id="wishList" tabindex="0" aria-live="polite" aria-label="Birthday wishes from guests">
+            <p class="wishes__empty">Loading wishes…</p>
+          </div>
+        </div>
+        <div class="wishes__foot reveal">
+          <span id="wishCount"></span>
+          <button class="link-btn" id="btnWishes" type="button">Refresh</button>
+        </div>
+      </div>
+
       <!-- 7. Contact -->
       <div class="contact" id="contact">
         <p class="contact__lead reveal">For further details, please contact</p>
@@ -467,8 +482,8 @@
     <button class="lightbox__btn lightbox__next" id="lbNext" type="button" aria-label="Next photo"><svg><use href="#i-next"/></svg></button>
   </div>
 
-  <script src="js/config.js?v=10"></script>
-  <script src="js/fx.js?v=10"></script>
-  <script src="js/app.js?v=10"></script>
+  <script src="js/config.js?v=11"></script>
+  <script src="js/fx.js?v=11"></script>
+  <script src="js/app.js?v=11"></script>
 </body>
 </html>

@@ -10,6 +10,10 @@
  *
  * Every RSVP is added as one row in the "RSVP" tab.
  * A "Summary" tab shows live totals (attending guests, declines, responses).
+ * Wishes appear on the invitation's wishes wall. To hide one, delete its text in the sheet.
+ *
+ * After changing this code: Deploy > Manage deployments > Edit (pencil) > Version: New version > Deploy.
+ * The web app URL stays the same.
  */
 
 var TAB = 'RSVP';
@@ -55,8 +59,16 @@ function clean_(s, max) {
   return /^[=+\-@]/.test(s) ? "'" + s : s;
 }
 
+// Returns the birthday wishes for the wishes wall (newest first). Phone numbers are never sent.
 function doGet() {
-  return json_({ ok: true, service: 'Dato San 50th RSVP' });
+  var rows = sheet_().getDataRange().getValues().slice(1);
+  var wishes = [];
+  for (var i = rows.length - 1; i >= 0 && wishes.length < 300; i--) {
+    var wish = String(rows[i][5] || '').replace(/^'/, '').trim();
+    if (!wish) continue;
+    wishes.push({ name: String(rows[i][1] || '').replace(/^'/, '').trim(), wish: wish });
+  }
+  return json_({ ok: true, service: 'Dato San 50th RSVP', wishes: wishes });
 }
 
 function doPost(e) {
