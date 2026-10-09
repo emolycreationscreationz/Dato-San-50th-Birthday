@@ -26,7 +26,7 @@ window.EVENT = {
 
   // --- Hero video (AI video) ---
   // Put the file in assets/video/ and fill in the path. Empty = animated "50" placeholder.
-  heroVideo: "assets/video/dato-san.mp4",       // AI video (16:9, with sound)
+  heroVideo: "assets/video/dato-san.mp4",       // AI video (16:9, silent)
   heroVideoWebm: "assets/video/dato-san.webm",  // fallback copy for browsers without MP4
   heroPoster: "assets/video/dato-san-poster.jpg",   // still shown while the video loads
   heroVideoRatio: "16 / 9",      // "16 / 9" landscape, "9 / 16" portrait, "1 / 1" square
@@ -50,7 +50,7 @@ window.EVENT = {
 
   // --- RSVP (Google Sheets) ---
   // Paste the Google Apps Script Web App URL (ends in /exec). Empty = demo mode.
-  rsvpApiUrl: "",
+  rsvpApiUrl: "https://script.google.com/macros/s/AKfycbzFjY6VQn6BwXx9CkHc06AUMJQG58PRgpMX4XR0zFGDkIBbHYDG13nSldLNSRMyxFq5WA/exec",
   rsvpDeadlineLabel: "15th November 2026",
   rsvpClosesAt: "2026-11-15T23:59:59+08:00",   // form closes after this. Empty = never closes.
   maxGuests: 6,

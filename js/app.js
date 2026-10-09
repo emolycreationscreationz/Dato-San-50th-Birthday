@@ -83,7 +83,7 @@
   }
 
   /* ---------- Hero video ---------- */
-  var video = null, userSound = false;
+  var video = null;
   function heroMedia() {
     var frame = $('#videoFrame');
     if (C.heroVideoRatio) frame.style.setProperty('--ratio', C.heroVideoRatio);
@@ -103,26 +103,6 @@
     video.addEventListener('loadeddata', function () { $('#hero50').hidden = true; });
     $('#heroMedia').appendChild(video);
 
-    var btn = $('#btnSound');
-    btn.hidden = false;
-    function syncBtn() {
-      btn.firstElementChild.firstElementChild.setAttribute('href', video.muted ? '#i-mute' : '#i-sound');
-      btn.setAttribute('aria-label', video.muted ? 'Turn sound on' : 'Turn sound off');
-    }
-    btn.addEventListener('click', function () {
-      video.muted = !video.muted;
-      if (video.paused) video.play().catch(function () {});
-      syncBtn();
-    });
-    video.addEventListener('volumechange', syncBtn);
-    btn.addEventListener('click', function () { userSound = true; });
-
-    // Sound plays on the first run only; after that it keeps looping quietly
-    var lastT = 0;
-    video.addEventListener('timeupdate', function () {
-      if (video.currentTime + 1 < lastT && !userSound) video.muted = true;
-      lastT = video.currentTime;
-    });
     // Pause while the video is scrolled off screen
     if ('IntersectionObserver' in window) {
       new IntersectionObserver(function (en) {
@@ -133,15 +113,11 @@
     }
   }
 
-  // Called inside the tap on the seal, so browsers allow sound.
+  // Start from the beginning as the envelope opens (the video is silent)
   function startVideo() {
     if (!video) return;
     try { video.currentTime = 0; } catch (e) {}
-    video.muted = false;
-    video.play().catch(function () {
-      video.muted = true;
-      video.play().catch(function () {});
-    });
+    video.play().catch(function () {});
   }
 
   /* ---------- Envelope opening ---------- */
