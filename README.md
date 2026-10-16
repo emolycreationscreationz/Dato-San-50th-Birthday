@@ -39,8 +39,8 @@ google-apps-script/Code.gs  RSVP backend (Google Sheets)
 
 ## The AI video
 
-Current video: `assets/video/dato-san.mp4` (1280×720, 10 s, no audio) plus `dato-san.webm` as a fallback copy,
-and `dato-san-poster.jpg` shown while it loads. It starts from the beginning when the seal is tapped,
+Current video: `assets/video/dato-san-v2.mp4` (1280×720, 10 s, no audio) plus `dato-san-v2.webm` as a fallback copy,
+and `dato-san-v2-poster.jpg` shown while it loads. (Use a new file name when replacing the video, so phones don't keep the cached old one.) It starts from the beginning when the seal is tapped,
 loops silently, and pauses when scrolled off screen.
 
 To replace it:

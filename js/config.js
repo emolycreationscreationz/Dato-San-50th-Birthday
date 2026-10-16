@@ -26,9 +26,9 @@ window.EVENT = {
 
   // --- Hero video (AI video) ---
   // Put the file in assets/video/ and fill in the path. Empty = animated "50" placeholder.
-  heroVideo: "assets/video/dato-san.mp4",       // AI video (16:9, silent)
-  heroVideoWebm: "assets/video/dato-san.webm",  // fallback copy for browsers without MP4
-  heroPoster: "assets/video/dato-san-poster.jpg",   // still shown while the video loads
+  heroVideo: "assets/video/dato-san-v2.mp4",       // AI video (16:9, silent)
+  heroVideoWebm: "assets/video/dato-san-v2.webm",  // fallback copy for browsers without MP4
+  heroPoster: "assets/video/dato-san-v2-poster.jpg",   // still shown while the video loads
   heroVideoRatio: "16 / 9",      // "16 / 9" landscape, "9 / 16" portrait, "1 / 1" square
 
   // --- Background music (starts from the beginning when the seal is tapped, loops) ---
