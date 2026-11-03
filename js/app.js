@@ -63,6 +63,20 @@
     });
   }
 
+  /* ---------- Gold script: one box per word (iPhone clips swashes at word edges) ---------- */
+  function splitScript() {
+    $$('.hero__name-1, .hero__name-2, .intro__script .foil, .closing__love .foil, .wishes__title .foil').forEach(function (e) {
+      var words = e.textContent.split(/(\s+)/);
+      e.classList.remove('foil');
+      e.textContent = '';
+      words.forEach(function (w) {
+        if (!w) return;
+        if (/^\s+$/.test(w)) { e.appendChild(document.createTextNode(w)); return; }
+        e.appendChild(el('span', 'foil fw', w));
+      });
+    });
+  }
+
   /* ---------- Intro atmosphere: drifting bokeh + twinkles ---------- */
   function atmosphere() {
     if (reduced) return;
@@ -558,6 +572,7 @@
   }
 
   fill();
+  splitScript();
   frames();
   atmosphere();
   extras();
