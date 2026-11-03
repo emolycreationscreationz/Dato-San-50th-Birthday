@@ -7,8 +7,8 @@
  */
 window.EVENT = {
   // --- Names ---
-  honoree: "Dato’ Sandra Sekaran",
-  honoreeShort: "Dato’ San",
+  honoree: "Dato’ Sri G. Sandra Sekaran",
+  honoreeShort: "Dato’ Sri G. Sandra Sekaran",
   monogram: "DS",
 
   // --- Date & time (Malaysia time, +08:00) ---
@@ -38,11 +38,11 @@ window.EVENT = {
   // Put photos in assets/photos/ and fill in src. Empty src = placeholder frame.
   // focus = which part of the photo stays visible when cropped ("x% y%").
   gallery: [
-    { src: "assets/photos/dato-san-1.webp", focus: "32% 30%", alt: "Dato’ San in white, smiling with a thumbs-up at a festive evening" },
-    { src: "assets/photos/dato-san-2.webp", focus: "62% 40%", alt: "Dato’ San on the golf course at sunset" },
-    { src: "assets/photos/dato-san-3.webp", focus: "50% 62%", alt: "Dato’ San with arms wide open in Uçhisar, Cappadocia" },
-    { src: "assets/photos/dato-san-4.webp", focus: "50% 38%", alt: "Dato’ San standing with arms crossed outside a garden market" },
-    { src: "assets/photos/dato-san-5.webp", focus: "46% 42%", alt: "Dato’ San framed through a carved marble window" }
+    { src: "assets/photos/dato-san-1.webp", focus: "32% 30%", alt: "Dato’ Sri G. Sandra Sekaran in white, smiling with a thumbs-up at a festive evening" },
+    { src: "assets/photos/dato-san-2.webp", focus: "62% 40%", alt: "Dato’ Sri G. Sandra Sekaran on the golf course at sunset" },
+    { src: "assets/photos/dato-san-3.webp", focus: "50% 62%", alt: "Dato’ Sri G. Sandra Sekaran with arms wide open in Uçhisar, Cappadocia" },
+    { src: "assets/photos/dato-san-4.webp", focus: "50% 38%", alt: "Dato’ Sri G. Sandra Sekaran standing with arms crossed outside a garden market" },
+    { src: "assets/photos/dato-san-5.webp", focus: "46% 42%", alt: "Dato’ Sri G. Sandra Sekaran framed through a carved marble window" }
   ],
 
   // --- Further details ---

@@ -1,5 +1,5 @@
 /**
- * RSVP backend — Dato’ San 50th Birthday
+ * RSVP backend — Dato’ Sri G. Sandra Sekaran 50th Birthday
  * ---------------------------------------
  * 1. Create a new Google Sheet > Extensions > Apps Script.
  * 2. Delete the sample code, paste this file, Save.

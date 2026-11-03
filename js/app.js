@@ -258,7 +258,7 @@
   function calendar() {
     $('#btnCal').addEventListener('click', function () {
       function utc(d) { return d.toISOString().replace(/[-:]/g, '').replace(/\.\d{3}/, ''); }
-      var title = (C.honoreeShort || '') + '’s 50th Birthday Celebration';
+      var title = (C.honoreeShort || '') + ' · 50th Birthday Celebration';
       var loc = [venue.name, venue.address].filter(Boolean).join(', ');
       var esc = function (s) { return String(s).replace(/([,;\\])/g, '\\$1'); };
       var ics = [
@@ -461,7 +461,7 @@
     var box = $('#wishList');
     box.textContent = '';
     if (!wishList.length) {
-      box.appendChild(el('p', 'wishes__empty', 'No wishes yet. Be the first to send Dato’ San a birthday wish with your RSVP!'));
+      box.appendChild(el('p', 'wishes__empty', 'No wishes yet. Be the first to send Dato’ Sri a birthday wish with your RSVP!'));
       $('#wishCount').textContent = '';
       return;
     }

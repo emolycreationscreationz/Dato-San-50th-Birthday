@@ -1,6 +1,6 @@
-# Dato’ San · 50th Birthday Invitation
+# Dato’ Sri G. Sandra Sekaran · 50th Birthday Invitation
 
-Digital invitation for the 50th birthday celebration of Dato’ Sandra Sekaran @ Dato’ San.
+Digital invitation for the 50th birthday celebration of Dato’ Sri G. Sandra Sekaran.
 Theme: rich gold & black. Static site (HTML/CSS/JS), no build step.
 
 ## Flow
@@ -10,7 +10,7 @@ Theme: rich gold & black. Static site (HTML/CSS/JS), no build step.
    stamps onto it and light sweeps across the foil. Tapping the seal cracks it in two with a burst of gold,
    the ribbon slides away, the flap opens to reveal a gold-glitter lining, the gold-edged card rises
    and comes forward in a golden flash, and the page appears under falling confetti.
-2. **Hero**: a grand art-deco gold arch draws itself, "Dato’ San" writes itself in embossed gold foil,
+2. **Hero**: a grand art-deco gold arch draws itself, "Dato’ Sri G. Sandra Sekaran" writes itself (two lines) in embossed gold foil,
    and gold fireworks burst behind the text. The **AI video** sits below in a bevelled gold picture frame
    (an animated gold "50" stands in until it's added).
 3. **Gold ribbon** scrolling "Fifty Years · Life · Love · Laughter · Achievements · Cherished Memories".
