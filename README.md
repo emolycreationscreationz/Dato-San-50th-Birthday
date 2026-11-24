@@ -95,7 +95,7 @@ box under the RSVP form (newest first, name + wish; phone numbers are never show
 wishes every 30 seconds while the invitation is open. To hide a wish,
 delete its text in the sheet's "Birthday Wishes" column.
 
-The form closes automatically after `rsvpClosesAt` (15 Nov 2026, 11:59 PM). To keep it open, set `rsvpClosesAt: ""`.
+The RSVP date shown to guests is `rsvpDeadlineLabel` (15th December 2026). The form stays open after that date because `rsvpClosesAt` is empty; to close it automatically, set a date such as `"2026-12-15T23:59:59+08:00"`.
 If you change the Apps Script code, use **Deploy → Manage deployments → Edit → New version** so the same URL keeps working.
 
 ## Deploy on Netlify

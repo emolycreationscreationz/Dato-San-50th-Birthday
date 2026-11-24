@@ -54,8 +54,8 @@ window.EVENT = {
   // --- RSVP (Google Sheets) ---
   // Paste the Google Apps Script Web App URL (ends in /exec). Empty = demo mode.
   rsvpApiUrl: "https://script.google.com/macros/s/AKfycbzFjY6VQn6BwXx9CkHc06AUMJQG58PRgpMX4XR0zFGDkIBbHYDG13nSldLNSRMyxFq5WA/exec",
-  rsvpDeadlineLabel: "15th November 2026",
-  rsvpClosesAt: "2026-11-15T23:59:59+08:00",   // form closes after this. Empty = never closes.
+  rsvpDeadlineLabel: "15th December 2026",
+  rsvpClosesAt: "",                             // empty = the form never closes (stays open after the RSVP date)
   maxGuests: 6,
 
   designedBy: "Emoly Creations"
