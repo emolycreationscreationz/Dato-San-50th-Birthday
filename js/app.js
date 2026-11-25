@@ -65,7 +65,7 @@
 
   /* ---------- Gold script: one box per word (iPhone clips swashes at word edges) ---------- */
   function splitScript() {
-    $$('.hero__name-1, .hero__name-2, .intro__script .foil, .closing__love .foil, .wishes__title .foil').forEach(function (e) {
+    $$('.hero__name-1, .hero__name-2, .intro__script .foil, .closing__love .foil, .wishes__title .foil, .dress__theme .foil').forEach(function (e) {
       var words = e.textContent.split(/(\s+)/);
       e.classList.remove('foil');
       e.textContent = '';
