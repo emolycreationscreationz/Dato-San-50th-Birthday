@@ -17,7 +17,8 @@ Theme: rich gold & black. Static site (HTML/CSS/JS), no build step.
 4. **Invitation** in an art-deco panel whose corners draw in, plus two champagne flutes that clink with a sparkle.
 5. **The Celebration**: date in a spinning gold ring, flip-style countdown, venue card with a travelling-light border,
    Google Maps / Waze and Add to Calendar (.ics).
-6. **Dress Code**: Black & Gold, with a black velvet and a gold glitter swatch.
+6. **Dress Code**: Black & Gold, with an illustrated couple (`assets/photos/dress-code-couple.webp`, background removed)
+   and black velvet / gold glitter swatches.
 7. **Cherished Moments**: 5 photos (one large portrait plus four smaller) that tilt in, with light sweeps; tap to enlarge.
 7. **RSVP** card with a travelling-light border; a successful "Joyfully Accept" bursts into gold confetti. Saved to Google Sheets.
 8. **Contact**, then the closing with a spinning "50" medallion and a final round of fireworks.

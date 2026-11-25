@@ -1170,3 +1170,21 @@ span.foil.fw { display: inline-block; padding: .14em .34em .1em; margin: -.14em 
 .dress__theme { margin: 0; font-family: var(--f-script); font-size: clamp(44px, 12vw, 64px); line-height: 1.25; }
 .dress__note { margin: 10px auto 0; max-width: 30ch; font-style: italic; font-size: clamp(19px, 5vw, 22px); line-height: 1.55; color: var(--cream); }
 @media (max-width: 900px), (pointer: coarse) { .swatch__ring { animation: none; } }
+
+/* Dress code couple (background removed), softly faded into the page */
+.dress__couple { position: relative; z-index: 0; width: min(100%, 560px); margin: -4px auto 30px; }
+.dress__couple::before {
+  content: ""; position: absolute; z-index: -1; left: -8%; right: -8%; top: 8%; bottom: 0;
+  background: radial-gradient(ellipse 55% 60% at 50% 55%, rgba(243, 220, 138, .26), rgba(212, 175, 55, .08) 55%, transparent 75%);
+}
+.dress__couple::after {
+  content: ""; position: absolute; left: 6%; right: 6%; bottom: 0; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold) 25%, var(--gold-lt) 50%, var(--gold) 75%, transparent);
+  box-shadow: 0 0 12px rgba(212, 175, 55, .6);
+}
+.dress__couple img {
+  display: block; width: 100%; height: auto;
+  -webkit-mask: linear-gradient(180deg, #000 72%, transparent 100%);
+  mask: linear-gradient(180deg, #000 72%, transparent 100%);
+}
+@media (min-width: 720px) { .dress__couple { margin-bottom: 36px; } }
